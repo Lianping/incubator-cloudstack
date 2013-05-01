@@ -1367,7 +1367,7 @@ SecondaryStorageResource {
         if (!parent.endsWith(File.separator)) {
             parent += File.separator;
         }
-        String absoluteSnapsthotDir = parent + File.separator + "snapshots" + File.separator + cmd.getAccountId() + File.separator + cmd.getVolumeId();
+        String absoluteSnapsthotDir = parent + File.separator + "snapshots" + File.separator + cmd.getDcId() + File.separator + cmd.getAccountId() + File.separator + cmd.getVolumeId();
         File ssParent = new File(absoluteSnapsthotDir);
         if (ssParent.exists() && ssParent.isDirectory()) {
             File[] files = ssParent.listFiles();
@@ -1375,7 +1375,7 @@ SecondaryStorageResource {
                 boolean found = false;
                 String filename = file.getName();
                 for (String uuid : cmd.getValidBackupUUIDs()) {
-                    if (filename.startsWith(uuid)) {
+                    if (uuid.endsWith(filename)) {
                         found = true;
                         break;
                     }
