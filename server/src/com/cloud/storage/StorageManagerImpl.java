@@ -1159,7 +1159,7 @@ public class StorageManagerImpl extends ManagerBase implements StorageManager, C
     }
 
     List<String> findAllSnapshotForVolume(Long volumeId) {
-        String sql = "SELECT backup_snap_id FROM snapshots WHERE volume_id=? and backup_snap_id is not NULL";
+        String sql = "SELECT backup_snap_id FROM snapshots WHERE volume_id=? and backup_snap_id is not NULL and removed is NULL";
         try {
             Transaction txn = Transaction.currentTxn();
             ResultSet rs = null;
